@@ -20,6 +20,7 @@ public class MouseListener implements java.awt.event.MouseListener, MouseMotionL
                     game.getMenu().mouseClicked(e.getX(), e.getY());
                     break;
                 case PLAYING:
+//                    System.out.println("clicked");
                     game.getPlaying().mouseClicked(e.getX(), e.getY());
                     break;
                 default:

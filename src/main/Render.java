@@ -17,6 +17,9 @@ public class Render {
             case PLAYING:
                 game.getPlaying().render(g);
                 break;
+            case GAME_OVER:
+                game.getGameOver().render(g);
+                break;
         }
     }
 }

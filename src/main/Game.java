@@ -1,5 +1,6 @@
 package main;
 
+import scenes.GameOver;
 import scenes.Menu;
 import scenes.Playing;
 
@@ -13,12 +14,12 @@ public class Game extends JFrame implements Runnable {
     private GameScreen gameScreen;
     private Menu menu;
     private Playing playing;
+    private GameOver gameOver;
 
     public Game(){
         initClasses();
-        gameScreen.initInputs();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(600, 800);
+        setSize(600, 700);
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Space Rush");
@@ -27,6 +28,7 @@ public class Game extends JFrame implements Runnable {
         updateGame();
         pack();
         setVisible(true);
+        gameScreen.initInputs();
     }
 
     private void initClasses() {
@@ -35,6 +37,7 @@ public class Game extends JFrame implements Runnable {
         gameScreen = new GameScreen(this);
         menu = new Menu(this);
         playing = new Playing(this);
+        gameOver = new GameOver(this);
     }
 
     private void updateGame() {
@@ -95,5 +98,9 @@ public class Game extends JFrame implements Runnable {
 
     public Playing getPlaying() {
         return playing;
+    }
+
+    public GameOver getGameOver() {
+        return gameOver;
     }
 }

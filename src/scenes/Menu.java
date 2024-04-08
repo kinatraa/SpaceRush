@@ -39,6 +39,8 @@ public class Menu extends GameScene implements SceneMethods {
     public void mouseClicked(int x, int y) {
         if (bPlaying.getBounds().contains(x, y)) {
             bPlaying.resetBooleans();
+            getGame().getPlaying().setLastTimeUpdate(System.currentTimeMillis());
+            getGame().getPlaying().getProjectileManager().setLastFireTime(System.currentTimeMillis());
             SetGameState(PLAYING);
         } else if (bQuit.getBounds().contains(x, y)) {
             bQuit.resetBooleans();
