@@ -8,17 +8,13 @@ public abstract class Enemy {
     protected EnemyManager enemyManager;
     protected float x, y;
     protected Rectangle bounds;
-    protected int health, maxHealth;
-    protected int ID;
+    protected int health;
     protected int enemyType;
-    protected int lastDir;
     protected boolean alive = true;
-    protected int rotate = 0;
 
-    public Enemy(float x, float y, int ID, int enemyType, EnemyManager enemyManager) {
+    public Enemy(float x, float y, int enemyType, EnemyManager enemyManager) {
         this.x = x;
         this.y = y;
-        this.ID = ID;
         this.enemyType = enemyType;
         this.enemyManager = enemyManager;
         bounds = new Rectangle((int) x+8, (int) y+8, 48, 48);
@@ -26,8 +22,7 @@ public abstract class Enemy {
     }
 
     private void setStartHealth() {
-        health = 5;
-        maxHealth = health;
+        health = enemyManager.getMaxHealth();
     }
 
     public void kill() {
@@ -39,21 +34,13 @@ public abstract class Enemy {
         this.health -= dmg;
         if (health <= 0) {
             alive = false;
-            enemyManager.reward(enemyType);
+            enemyManager.decreaseAmountOfEnemies();
+            enemyManager.reward();
         }
     }
 
     public void move() {
         this.y += 70;
-    }
-
-    private void updateHitbox() {
-        bounds.x = (int) x;
-        bounds.y = (int) y;
-    }
-
-    public float getHealthBarFloat() {
-        return health / (float) maxHealth;
     }
 
     public float getX() {
@@ -72,20 +59,8 @@ public abstract class Enemy {
         return health;
     }
 
-    public int getID() {
-        return ID;
-    }
-
     public int getEnemyType() {
         return enemyType;
-    }
-
-    public int getLastDir() {
-        return lastDir;
-    }
-
-    public void setLastDir(int newDir) {
-        this.lastDir = newDir;
     }
 
     public boolean isAlive() {

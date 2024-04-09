@@ -20,7 +20,7 @@ public class ShipManager {
     }
 
     private void spawnShip() {
-        myShip = new Ship(600 / 2 - 32 + 8, 600 + 8);
+        myShip = new Ship(600 / 2 - 32 + 8, 650);
     }
 
     public void update(){

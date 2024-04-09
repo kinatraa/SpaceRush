@@ -31,7 +31,9 @@ public class Ship {
     }
 
     public void move(float xSpeed){
-        x += xSpeed;
+        if(x + xSpeed > 0 && x + xSpeed < 600-48){
+            x += xSpeed;
+        }
     }
 
     public float getX() {
@@ -48,6 +50,10 @@ public class Ship {
 
     public int getDmg() {
         return dmg;
+    }
+
+    public void increaseDmg(int incDmg){
+        this.dmg += incDmg;
     }
 
     public boolean isAlive(){

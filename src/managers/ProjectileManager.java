@@ -70,8 +70,8 @@ public class ProjectileManager {
     public void draw(Graphics g){
         for(Projectile p : projectiles){
             if(p.isActive()){
-                g.setColor(Color.RED);
-                g.drawRect((int) (p.getPos().x + 20), (int) p.getPos().y, 6, 12);
+//                g.setColor(Color.RED);
+//                g.drawRect((int) (p.getPos().x + 20), (int) p.getPos().y, 6, 12);
                 g.drawImage(projImg, (int) p.getPos().x + 20, (int) p.getPos().y, 6, 12,null);
             }
         }
@@ -81,8 +81,8 @@ public class ProjectileManager {
         return bulletSpeed;
     }
 
-    public void setBulletSpeed(int bulletSpeed) {
-        this.bulletSpeed = bulletSpeed;
+    public void increaseBulletSpeed(int incSpeed) {
+        this.bulletSpeed += incSpeed;
     }
 
     public int getCooldown() {
@@ -92,4 +92,5 @@ public class ProjectileManager {
     public void setLastFireTime(long lastFireTime) {
         this.lastFireTime = lastFireTime;
     }
+
 }

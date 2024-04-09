@@ -17,7 +17,7 @@ public class Projectile {
 
     public void move(){
         pos.y -= speed;
-        if(pos.y < -20) active = false;
+        if(pos.y < -12) active = false;
     }
 
     public Point2D.Float getPos() {
