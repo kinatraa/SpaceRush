@@ -51,6 +51,11 @@ public class EnemyManager {
                 if (e.isAlive()) {
                     updateEnemyMove(e);
                     if (playing.checkCollision(e)) {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException er) {
+                            er.printStackTrace();
+                        }
                         SetGameState(GAME_OVER);
                         return;
                     }
@@ -86,6 +91,7 @@ public class EnemyManager {
     }
 
     public void spawnEnemy() {
+        playing.setSpawned(false);
         amountOfEnemies = 7 * lines;
         int x = 25;
         int y = 10;
@@ -149,7 +155,9 @@ public class EnemyManager {
     }
 
     public void decreaseDelayMove(int descDelay){
-        delayMove -= descDelay;
+        if(delayMove - descDelay >= 0){
+            delayMove -= descDelay;
+        }
     }
 
     public int getMaxHealth() {

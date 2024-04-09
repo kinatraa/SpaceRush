@@ -22,6 +22,7 @@ public class Playing extends GameScene implements SceneMethods {
     private ShipManager shipManager;
     private ProjectileManager projectileManager;
     private int exp = 0, lvl = 1, waveNum = 0, maxExp = 10;
+    private boolean spawned = false;
 
     public Playing(Game game) {
         super(game);
@@ -51,7 +52,8 @@ public class Playing extends GameScene implements SceneMethods {
     }
 
     public void update() {
-        if (enemyManager.getAmountOfEnemies() <= 0) {
+        if (enemyManager.getAmountOfEnemies() <= 0 && spawned == false) {
+            spawned = true;
             waveNum++;
             enemyManager.increaseMaxHealth(1);
             enemyManager.spawnEnemy();
@@ -69,7 +71,7 @@ public class Playing extends GameScene implements SceneMethods {
         if(waveNum >= 2) {
             waveNum = 0;
             enemyManager.increaseLines();
-            enemyManager.decreaseDelayMove(200);
+            enemyManager.decreaseDelayMove(500);
         }
     }
 
@@ -162,5 +164,9 @@ public class Playing extends GameScene implements SceneMethods {
 
     public ProjectileManager getProjectileManager() {
         return projectileManager;
+    }
+
+    public void setSpawned(boolean spawned) {
+        this.spawned = spawned;
     }
 }
